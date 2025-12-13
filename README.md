@@ -1,37 +1,34 @@
-# 💼 Sistema de Gestión de Gastos — Backend (API + Clean Architecture)
+# 💼 Expense Management System — Backend (API + Clean Architecture)
 
-Backend del obligatorio de **Programación 3**, implementado con **C# (.NET 8)** siguiendo los principios de **Clean Architecture**, con separación total de capas, casos de uso, repositorios desacoplados, JWT Authentication y sistema de auditoría.
+Backend for the Programming 3 mandatory assignment, implemented in C# (.NET 8) following Clean Architecture principles, with full layer separation, isolated use cases, decoupled repositories, JWT Authentication, and an auditing system.
 
-Este repositorio contiene **únicamente el servidor (API + lógica de negocio)**.  
-El cliente (interfaz de usuario) se encuentra en **otro repositorio**.
+This repository contains only the server (API + business logic).
+**The client (user interface) is located in a separate repository.**
 
 ---
 
-## 🧠 Descripción General
+## 🧠 Overview
 
-El backend permite gestionar:
+The backend allows managing:
+-Users
+-Teams
+-Expenses
+-Payments
+-Audit logs
 
-- Usuarios  
-- Equipos  
-- Gastos  
-- Pagos  
-- Logs de auditoría
-
-Incluye:
-
-- API REST completa  
-- Autenticación JWT  
-- Casos de uso aislados  
-- Repositorios implementados con EF Core  
-- Validaciones en Dominio + Aplicación  
-- Logs automáticos por cada operación  
+It includes:
+-Complete REST API
+-JWT authentication
+-Isolated use cases
+-Repositories implemented with EF Core
+-Domain + Application validations
+-Automatic logs for every operation
 
 ---
 
 # 🏗️ Arquitectura del Backend
 
-Estructura basada en **Clean Architecture**, organizada así:
-
+Structure based on **Clean Architecture**, organized as follows:
 ```
 📦 ObligatorioP3-Backend/
 │
@@ -71,70 +68,70 @@ Estructura basada en **Clean Architecture**, organizada así:
 
 ---
 
-# 🔌 Endpoints Disponibles
+# 🔌 Available endpoints
 
 ## 🔐 Auth
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/login` | Retorna un JWT válido para acceder al resto de la API |
+| POST | `/api/auth/login` | Returns a valid JWT to access the rest of the API |
 
 ---
 
 ## 👤 Users
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/users` | Crear usuario |
-| GET | `/api/users` | Listar usuarios |
-| GET | `/api/users/{id}` | Obtener un usuario |
+| POST | `/api/users` | Creates user |
+| GET | `/api/users` | List users |
+| GET | `/api/users/{id}` | Get one user by id |
 
 ---
 
 ## 👥 Teams
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/teams` | Crear equipo |
-| GET | `/api/teams` | Listar equipos |
-| GET | `/api/teams/{teamId}/users` | Usuarios de un equipo |
+| POST | `/api/teams` | Create team |
+| GET | `/api/teams` | List teams |
+| GET | `/api/teams/{teamId}/users` | Users from one team |
 
 ---
 
 ## 💸 Expenses
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/expenses` | Crear gasto |
-| GET | `/api/expenses` | Obtener todos los gastos |
-| GET | `/api/expenses/{id}` | Gasto por ID |
+| POST | `/api/expenses` | Create an expense |
+| GET | `/api/expenses` | Get all the expenses |
+| GET | `/api/expenses/{id}` | Expense by id |
 
 ---
 
 ## 🧾 Payments
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/payments` | Crear pago |
-| GET | `/api/payments` | Listar pagos |
-| GET | `/api/payments/{id}` | Obtener pago por ID |
+| POST | `/api/payments` | Create payment |
+| GET | `/api/payments` | List payments |
+| GET | `/api/payments/{id}` | Get payment by id |
 
 ---
 
 ## 📑 Logs
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/logs/{expenseId}` | Logs de un gasto |
-| GET | `/api/logs/payment/{paymentId}` | Logs de un pago |
+| GET | `/api/logs/{expenseId}` | Logs per expense |
+| GET | `/api/logs/payment/{paymentId}` | Logs per payment |
 
 ---
 
-# 📑 Sistema de Auditoría
+# 📑 Auditing System
 
-Cada caso de uso que crea o modifica una entidad genera un log automático con:
+Every use case that creates or modifies an entity automatically generates a log containing:
 
-- ID de la entidad  
-- Tipo de entidad  
-- Fecha/hora  
-- Tipo de operación  
-- Datos relevantes  
+-Entity ID
+-Entity type
+-Date/time
+-Operation type
+-Relevant data
 
-Ejemplo:
+Example:
 
 ```json
 {
@@ -148,47 +145,44 @@ Ejemplo:
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Technologies Used
 
-- C# (.NET 8)
-- ASP.NET Web API
-- Entity Framework Core
-- SQL Server
-- JWT Authentication
-- Clean Architecture
-- Dependency Injection
-- LINQ
-- DTO Pattern
+-C# (.NET 8)
+-ASP.NET Web API
+-Entity Framework Core
+-SQL Server
+-JWT Authentication
+-Clean Architecture
+-Dependency Injection
+-LINQ
+-DTO Pattern
+-Azure for deployment
 
 ---
 
-## 🚀 Cómo Ejecutar el Backend
+## 🚀 How to run
 
-1. Clonar repositorio:
+1. Clone repository:
 
-```bash
-git clone https://github.com/tuusuario/backend-p3.git
-```
+2. Setting connection string on `appsettings.json` (Can be local or deployed)
 
-2. Configurar connection string en `appsettings.json`
-
-3. Aplicar migraciones:
+3. Apply migrations:
 
 ```bash
 dotnet ef database update
 ```
 
-4. Ejecutar la API:
+4. Run api:
 
 ```bash
 dotnet run
 ```
 
-5. Probar endpoints con Postman, Thunder Client o Swagger (si está habilitado).
+5. Test endpoints on Postman or Swagger (For Swagger it must be enabled on Program.cs).
 
 ---
 
-## 🧑‍💻 Autor
+## 🧑‍💻 Author
 
-Desarrollado por **Mauricio Parodi** 🇺🇾  
-Backend del obligatorio de **Programación 3 – Universidad ORT**.
+Developed by Mauricio Parodi 🇺🇾
+Backend for the Programming 3 mandatory assignment – ORT University.
